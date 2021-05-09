@@ -39,6 +39,10 @@ public class SinglyLinklist {
     }
 
     public void remove(int index){
+        if(empty()){
+            System.err.println("The list is empty");
+            return;
+        }
 
 
     }
@@ -82,6 +86,7 @@ public class SinglyLinklist {
     }
 
     public boolean contains(int index){
+        if(empty()){return false;}
         return false;
     }
 
@@ -93,12 +98,18 @@ public class SinglyLinklist {
         SinglyLinklist sl = new SinglyLinklist();
         sl.add(10);
         sl.add(20);
+        sl.add(30);
+        sl.add(40);
+        sl.add(50);
         sl.print();
         System.out.println(sl.size());
-        sl.add(2,30);
+        sl.add(2,15);
         sl.print();
-
-        //sl.clear();
+        sl.add(4,35);
+        sl.print();
+        System.out.println(sl.size());
+        sl.clear();
+        sl.print();
 
     }
 
