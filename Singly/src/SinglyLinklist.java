@@ -17,6 +17,7 @@ public class SinglyLinklist {
 
     public void add(int index,int number){
 
+
     }
 
     public void remove(int index){
@@ -28,25 +29,34 @@ public class SinglyLinklist {
     }
 
     public void print(){
-        if(head==null){
-            System.out.println("List is empty");
-        }else {
+
             System.out.print("[");
             Node tempHead=head;
             while (tempHead!=null){
                 System.out.print(tempHead.data+", ");
                 tempHead=tempHead.next;
             }
-            System.out.println("\b\b]");
-        }
+            System.out.println(empty() ? "List is Empty]" : "\b\b]");
+
     }
 
     public void clear(){
-
+        head=null;
     }
 
     public int size(){
-        return 0;
+        if(head==null){
+            return 0;
+        }else {
+            int count=0;
+            Node tempHead = head;
+            while (tempHead!=null){
+                count++;
+                tempHead= tempHead.next;
+            }
+            return count;
+        }
+
     }
 
     public boolean contains(int index){
@@ -54,7 +64,7 @@ public class SinglyLinklist {
     }
 
     public boolean empty(){
-        return false;
+        return head==null;
     }
 
     public static void main(String[] args) {
@@ -62,6 +72,7 @@ public class SinglyLinklist {
         sl.add(10);
         sl.add(20);
         sl.print();
+        System.out.println(sl.size());
 
     }
 
