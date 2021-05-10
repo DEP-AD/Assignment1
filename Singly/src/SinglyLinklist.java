@@ -48,15 +48,20 @@ public class SinglyLinklist {
             temp=temp.next;
         }
         prev.next=temp.next;
-
     }
 
+//*******************************************************
     public int get(int index){
-        if(index>size() || index<0){
+        if(index>size() || index<=0){
             throw new RuntimeException("Invalid index");
         }
-        return head.data;
+        Node current =head;
+        for (int i = 1; i < index; i++) {
+            current=current.next;
+        }
+        return current.data;
     }
+    //****************************************************
 
     public void print(){
             System.out.print("[");
@@ -119,7 +124,8 @@ public class SinglyLinklist {
         sl.remove(2);
         sl.print();
         System.out.println(sl.contains(60));
-        System.out.println(sl.get(2));
+        System.out.println(sl.get(1));
+        sl.print();
         System.out.println(sl.size());
         sl.clear();
         sl.print();
