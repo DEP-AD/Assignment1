@@ -26,7 +26,7 @@ public class SinglyLinklist {
             return;
         }
 
-        while (temp.next!=null && --index>0){
+        while (temp.next!=null && index>0){
             prev=temp;
             temp=temp.next;
 
@@ -39,11 +39,16 @@ public class SinglyLinklist {
     }
 
     public void remove(int index){
+        Node prev=head, temp=head;
         if(empty()){
             System.err.println("The list is empty");
             return;
         }
-
+        while (temp.next!=null && index>0){
+            prev=temp;
+            temp=temp.next;
+        }
+        prev.next=temp.next;
 
     }
 
@@ -106,6 +111,8 @@ public class SinglyLinklist {
         sl.add(2,15);
         sl.print();
         sl.add(4,35);
+        sl.print();
+        sl.remove(2);
         sl.print();
         System.out.println(sl.size());
         sl.clear();
