@@ -35,7 +35,6 @@ public class SinglyLinklist {
         prev.next=newNode;
         newNode=temp;
 
-
     }
 
     public void remove(int index){
@@ -56,11 +55,10 @@ public class SinglyLinklist {
         if(index>size() || index<0){
             throw new RuntimeException("Invalid index");
         }
-        return 0;
+        return head.data;
     }
 
     public void print(){
-
             System.out.print("[");
             Node tempHead=head;
             while (tempHead!=null){
@@ -68,7 +66,6 @@ public class SinglyLinklist {
                 tempHead=tempHead.next;
             }
             System.out.println(empty() ? "List is Empty]" : "\b\b]");
-
     }
 
     public void clear(){
@@ -90,8 +87,15 @@ public class SinglyLinklist {
 
     }
 
-    public boolean contains(int index){
+    public boolean contains(int number){
         if(empty()){return false;}
+
+        Node temp;
+        for (temp = head; temp != null ; temp=temp.next) {
+            if(temp.data==number){
+                return true;
+            }
+        }
         return false;
     }
 
@@ -114,6 +118,8 @@ public class SinglyLinklist {
         sl.print();
         sl.remove(2);
         sl.print();
+        System.out.println(sl.contains(60));
+        System.out.println(sl.get(2));
         System.out.println(sl.size());
         sl.clear();
         sl.print();
