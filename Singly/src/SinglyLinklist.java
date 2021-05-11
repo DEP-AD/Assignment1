@@ -1,39 +1,53 @@
 import linklist.Node;
 
 public class SinglyLinklist {
+
     private Node head=null;
+    private int size;
 
     public void add(int number){
-        Node newNode=new Node(number);
+
+        if(empty()){
+            head = new Node(number,null);
+        }else{
+                Node temp=head;
+
+                while (temp.getNext()!=null){
+                    temp=temp.getNext();
+                }
+                temp.setNext(new Node(number,null));
+        }
+        size++;
+
+        /**Node newNode=new Node(number);
 
         if(head==null){
             head=newNode;
         }else {
-            newNode.next=head;
+            newNode.setNext(head);
             head=newNode;
-        }
+        }*/
 
     }
 
     public void add(int index,int number){
-        Node newNode=new Node(number);
+        Node newNode=new Node(number,null);
 
-        Node temp=head, prev=head;
+        Node current=head, prev=head;
 
-        if(index==1){
-            newNode.next=head;
+       if(index==1){
+            newNode.setNext(head);
             head=newNode;
             return;
         }
 
-        while (temp.next!=null && index>0){
+
+        /**while (temp.next!=null && index>0){
             prev=temp;
             temp=temp.next;
-
         }
-
-        prev.next=newNode;
-        newNode=temp;
+         current.next=newNode;
+         newNode=current;*/
 
     }
 
@@ -43,11 +57,11 @@ public class SinglyLinklist {
             System.err.println("The list is empty");
             return;
         }
-        while (temp.next!=null && index>0){
+        while (temp.getNext() !=null && index>0){
             prev=temp;
-            temp=temp.next;
+            temp= temp.getNext();
         }
-        prev.next=temp.next;
+        prev.setNext(temp.getNext());
     }
 
 //*******************************************************
@@ -57,24 +71,27 @@ public class SinglyLinklist {
         }
         Node current =head;
         for (int i = 1; i < index; i++) {
-            current=current.next;
+            current= current.getNext();
         }
-        return current.data;
+        return current.getData();
     }
     //****************************************************
 
     public void print(){
             System.out.print("[");
             Node tempHead=head;
+
             while (tempHead!=null){
-                System.out.print(tempHead.data+", ");
-                tempHead=tempHead.next;
+                System.out.print(tempHead.getData() +", ");
+                tempHead= tempHead.getNext();
             }
-            System.out.println(empty() ? "List is Empty]" : "\b\b]");
+
+            System.out.println(empty() ? "]" : "\b\b]");
     }
 
     public void clear(){
         head=null;
+        size=0;
     }
 
     public int size(){
@@ -85,7 +102,7 @@ public class SinglyLinklist {
             Node tempHead = head;
             while (tempHead!=null){
                 count++;
-                tempHead= tempHead.next;
+                tempHead= tempHead.getNext();
             }
             return count;
         }
@@ -96,8 +113,8 @@ public class SinglyLinklist {
         if(empty()){return false;}
 
         Node temp;
-        for (temp = head; temp != null ; temp=temp.next) {
-            if(temp.data==number){
+        for (temp = head; temp != null ; temp= temp.getNext()) {
+            if(temp.getData() ==number){
                 return true;
             }
         }
@@ -105,7 +122,7 @@ public class SinglyLinklist {
     }
 
     public boolean empty(){
-        return head==null;
+        return (head==null);
     }
 
     public static void main(String[] args) {
@@ -116,7 +133,7 @@ public class SinglyLinklist {
         sl.add(40);
         sl.add(50);
         sl.print();
-        System.out.println(sl.size());
+        System.out.println("Size of Linked list : "+sl.size());
         sl.add(2,15);
         sl.print();
         sl.add(4,35);
@@ -124,12 +141,11 @@ public class SinglyLinklist {
         sl.remove(2);
         sl.print();
         System.out.println(sl.contains(60));
-        System.out.println(sl.get(1));
+        System.out.println("Get data using index : "+sl.get(2));
         sl.print();
-        System.out.println(sl.size());
+        System.out.println("Size of Linked list : "+sl.size());
         sl.clear();
         sl.print();
-
     }
 
 }
