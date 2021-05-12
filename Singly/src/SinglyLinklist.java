@@ -17,7 +17,7 @@ public class SinglyLinklist {
                 }
                 temp.setNext(new Node(number,null));
         }
-        size++;
+        //size++;
 
         /**Node newNode=new Node(number);
 
@@ -29,7 +29,7 @@ public class SinglyLinklist {
         }*/
 
     }
-
+    //**************************************************************************************
     public void add(int index,int number){
         Node newNode=new Node(number,null);
 
@@ -41,13 +41,14 @@ public class SinglyLinklist {
             return;
         }
 
-
-        /**while (temp.next!=null && index>0){
-            prev=temp;
-            temp=temp.next;
+        //size=0;
+        while (current.getNext()!=null && size<index){
+            prev=current;
+            current=current.getNext();
+            size++;
         }
-         current.next=newNode;
-         newNode=current;*/
+         prev.setNext(newNode);
+         newNode.setNext(current);
 
     }
 
