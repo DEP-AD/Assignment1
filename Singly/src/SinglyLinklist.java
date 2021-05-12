@@ -45,10 +45,19 @@ public class SinglyLinklist {
             System.err.println("The list is empty");
             return;
         }
-        while (temp!=null && size<index-1){
+        /*if(index==0){
+            head.setNext(temp.getNext());
+            return;
+        }*/
+
+        for (int i = 0; temp!=null && i < index-1 ; i++) {
             temp= temp.getNext();
-            size++;
         }
+
+        if(temp==null || temp.getNext()==null){
+            System.err.println("Invalid Index!!");
+        }
+
         Node next=temp.getNext().getNext();
         temp.setNext(next);
     }
@@ -129,6 +138,8 @@ public class SinglyLinklist {
         sl.print();
         sl.remove(4);
         sl.print();
+       /* sl.remove(0);
+        sl.print();*/
         System.out.println(sl.contains(30));
         System.out.println("Get data using index : "+sl.get(2));
         sl.print();
