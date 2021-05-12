@@ -40,19 +40,20 @@ public class SinglyLinklist {
     }
 //*********************************************************************************************
     public void remove(int index){
-        Node prev=head, temp=head;
+        Node temp=head;
         if(empty()){
             System.err.println("The list is empty");
             return;
         }
-        while (temp.getNext() !=null && index>0){
-            prev=temp;
+        while (temp!=null && size<index-1){
             temp= temp.getNext();
+            size++;
         }
-        prev.setNext(temp.getNext());
+        Node next=temp.getNext().getNext();
+        temp.setNext(next);
     }
 
-//*******************************************************
+//***********************************************************************************************
     public int get(int index){
         if(index>size() || index<0){
             throw new RuntimeException("Invalid index");
@@ -63,7 +64,7 @@ public class SinglyLinklist {
         }
         return current.getData();
     }
-    //****************************************************
+    //********************************************************************************************
 
     public void print(){
             System.out.print("[");
@@ -126,9 +127,9 @@ public class SinglyLinklist {
         sl.print();
         sl.add(4,35);
         sl.print();
-        sl.remove(2);
+        sl.remove(4);
         sl.print();
-        System.out.println(sl.contains(60));
+        System.out.println(sl.contains(30));
         System.out.println("Get data using index : "+sl.get(2));
         sl.print();
         System.out.println("Size of Linked list : "+sl.size());
