@@ -17,41 +17,28 @@ public class SinglyLinklist {
                 }
                 temp.setNext(new Node(number,null));
         }
-        //size++;
-
-        /**Node newNode=new Node(number);
-
-        if(head==null){
-            head=newNode;
-        }else {
-            newNode.setNext(head);
-            head=newNode;
-        }*/
-
     }
     //**************************************************************************************
     public void add(int index,int number){
         Node newNode=new Node(number,null);
+        Node temp=head;
 
-        Node current=head, prev=head;
-
-       if(index==1){
+       if(empty()){
             newNode.setNext(head);
             head=newNode;
             return;
         }
 
-        //size=0;
-        while (current.getNext()!=null && size<index){
-            prev=current;
-            current=current.getNext();
-            size++;
-        }
-         prev.setNext(newNode);
-         newNode.setNext(current);
-
+       size=0;
+       while (size<index-1){
+           temp=temp.getNext();
+           size++;
+       }
+       newNode.setNext(temp.getNext());
+       temp.setNext(newNode);
+       return;
     }
-
+//*********************************************************************************************
     public void remove(int index){
         Node prev=head, temp=head;
         if(empty()){
@@ -67,11 +54,11 @@ public class SinglyLinklist {
 
 //*******************************************************
     public int get(int index){
-        if(index>size() || index<=0){
+        if(index>size() || index<0){
             throw new RuntimeException("Invalid index");
         }
         Node current =head;
-        for (int i = 1; i < index; i++) {
+        for (int i = 0; i < index; i++) {
             current= current.getNext();
         }
         return current.getData();
@@ -135,7 +122,7 @@ public class SinglyLinklist {
         sl.add(50);
         sl.print();
         System.out.println("Size of Linked list : "+sl.size());
-        sl.add(2,15);
+        sl.add(1,15);
         sl.print();
         sl.add(4,35);
         sl.print();
